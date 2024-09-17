@@ -1,6 +1,5 @@
 import '../CSS/reg.css'
 
-
 function Registracija() {
   return (
     <div className="container-custom">
