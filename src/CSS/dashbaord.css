@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard-header {
+    position: fixed; /* Fiksiraj header na vrhu */
+    top: 0; /* Postavi ga na vrh */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0077cc;
+    color: white;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Osiguraj da je iznad ostalih elemenata */
+}
+
+.logout-button {
+    padding: 8px 15px;
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #e84118;
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 80px 20px 20px; /* Dodaj margin-top da ostaviš prostor ispod headera */
+    width: 100%;
+}
+
+.image-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.image-card:hover {
+    transform: translateY(-5px);
+}
+
+.airplane-image {
+    width: 100%;
+    height: auto;
+}
+
+.image-description {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}

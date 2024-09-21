@@ -1,49 +1,67 @@
-// Login.js
 import { createSignal } from "solid-js";
-import { A } from "@solidjs/router";
 import { useNavigate } from "@solidjs/router";
-import { createClient } from '@supabase/supabase-js';
-import "../CSS/log.css"
+import supabase from '../supabase';
+import "../CSS/log.css";
 
 const Login = () => {
-  const [name, setName] = createSignal(''); 
-  const [email, setEmail] = createSignal(''); 
+  const [name, setName] = createSignal('');
+  const [email, setEmail] = createSignal('');
   const [password, setPassword] = createSignal('');
+  const [errorMessage, setErrorMessage] = createSignal('');
   const navigate = useNavigate();
 
-  const supabaseKEY = import.meta.env.VITE_SUPABASE_KEY;
-  const supabaseURL = import.meta.env.VITE_SUPABASE_URL;
-  const supabase = createClient(supabaseURL, supabaseKEY);
+  const loginUser = async (e) => {
+    e.preventDefault();
 
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', email())
+        .eq('password', password())
+        .eq('name', name())
+        .single();
+  
+      if (error || !data) {
+        setErrorMessage('Neispravni podaci za prijavu. Pokušajte ponovo.');
+        return;
+      }
+  
+      // Ako su podaci ispravni, preusmjeri na stranicu s korisničkim imenom
+      navigate("/home", { state: { name: data.name } });
+    } catch (error) {
+      setErrorMessage('Greška: ' + error.message);
+    }
+  };
 
-const loginUser = async (e) => {
-  e.preventDefault();
-  const { data, error } = await supabase.auth.signInWithPassword({
-      name: name(),
-      email: email(),
-      password: password(),
-  })
-  if (error) {
-      alert(error.message);
-      return;
-  }
-  if (data) {
-      navigate("/home");
-  }
-}
-
-  return(
+  return (
     <div className="prijava-container">      
-      <form onSubmit={(e) => loginUser(e)}>
+      <form onSubmit={loginUser}>
         <h2>Prijava</h2>
-        <input type="name"  onChange={(e)=>setName(e.target.value)} placeholder="Korisničko ime" name='name'/>
-        <input type="email"  onChange={(e)=>setEmail(e.target.value)} placeholder="Email" name='email'/>
-        <input type="password" onChange={(e)=>setPassword(e.target.value)} placeholder="Lozinka" name='password' />
+        <input 
+          type="text" 
+          onInput={(e) => setName(e.target.value)} 
+          placeholder="Korisnicko ime" 
+          required 
+        />
+        <input 
+          type="email" 
+          onInput={(e) => setEmail(e.target.value)} 
+          placeholder="Email" 
+          required 
+        />
+        <input 
+          type="password" 
+          onInput={(e) => setPassword(e.target.value)} 
+          placeholder="Lozinka" 
+          required 
+        />
         <button type="submit">Prijavite se</button>
+
+        {errorMessage() && <p style={{ color: 'red' }}>{errorMessage()}</p>}
       </form>
     </div>
-  )
-}
-
+  );
+};
 
 export default Login;

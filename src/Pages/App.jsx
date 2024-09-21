@@ -1,6 +1,6 @@
 import {Route} from "@solidjs/router"
 import Login from '../Components/Login';
-import Homepage from "./homepage";
+import Dashboard from "./dashboard";
 import Register from "../Components/Register";
 {/*import Regeister from '../Components/Signup';*/}
 
@@ -9,8 +9,8 @@ function App() {
     <>
       <Route path="/" component={Register}/>
       <Route path="/login" component={Login}/>
-      <Route path="/home" component={Homepage}/>
-      {/*<Route path="/register" component={Regeister}/>*/}
+      <Route path="/home" component={Dashboard}/>
+
     </>
   );
 }
