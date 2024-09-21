@@ -17,7 +17,6 @@ const Homepage = () => {
         }
     };
 
-    // Dummy data for airplane images (replace with real data)
     const airplaneImages = [
         { id: 1, url: 'url1.jpg', description: 'Avion 1' },
         { id: 2, url: 'url2.jpg', description: 'Avion 2' },
