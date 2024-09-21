@@ -1,7 +1,7 @@
 import '../CSS/reg.css';
 import { createSignal } from "solid-js";
 import { useNavigate } from "@solidjs/router";
-import supabase from '../supabase';
+import supabase from '../Backend/supabase';
 
 const Register = () => {
   const [name, setName] = createSignal('');

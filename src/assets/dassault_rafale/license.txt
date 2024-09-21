@@ -1,0 +1,11 @@
+Model Information:
+* title:	Dassault Rafale
+* source:	https://sketchfab.com/3d-models/dassault-rafale-d8bbfb0970ca4128b73e7e5364828fd3
+* author:	quick_loop (https://sketchfab.com/so_O)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Dassault Rafale" (https://sketchfab.com/3d-models/dassault-rafale-d8bbfb0970ca4128b73e7e5364828fd3) by quick_loop (https://sketchfab.com/so_O) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 import { useNavigate } from "@solidjs/router";
-import supabase from '../supabase';
+import supabase from '../Backend/supabase';
 import "../CSS/log.css";
 
 const Login = () => {
