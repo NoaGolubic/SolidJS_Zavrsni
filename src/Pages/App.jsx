@@ -1,8 +1,7 @@
 import {Route} from "@solidjs/router"
 import Login from '../Components/Login';
-import Dashboard from "./dashboard";
+import Dashboard from "./Dashboard";
 import Register from "../Components/Register";
-{/*import Regeister from '../Components/Signup';*/}
 
 function App() {
   return(
@@ -10,7 +9,6 @@ function App() {
       <Route path="/" component={Register}/>
       <Route path="/login" component={Login}/>
       <Route path="/home" component={Dashboard}/>
-
     </>
   );
 }
