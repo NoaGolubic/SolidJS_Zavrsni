@@ -10,7 +10,7 @@ import threeasy from "threeasy";
 const app = new threeasy(THREE, { alpha: true });
 var loader = new GLTFLoader();
 
-let modelURL = "src\assets\dassault_rafale2\scene.gltf";
+
 let modelURL3 = "src/volume_cloud/scene.gltf";
 let modelURL4 = "src/volume_cloud/scene.gltf";
 let modelURL5 = "src/volume_cloud/scene.gltf";
@@ -19,7 +19,6 @@ let modelURL7 = "src/volume_cloud/scene.gltf";
 let modelURL8 = "src/volume_cloud/scene.gltf";
 let modelURL9 = "src/volume_cloud/scene.gltf";
 
-let gltf1;
 let gltf3;
 let gltf4;
 let gltf5;
@@ -27,21 +26,6 @@ let gltf6;
 let gltf7;
 let gltf8;
 let gltf9;
-loader.load(modelURL, function(gltf) {
-    gltf1 = gltf;
-    gltf.scene.scale.x = 0.09;
-    gltf.scene.scale.y = 0.09;
-    gltf.scene.scale.z = 0.09;
-
-    gltf.scene.position.x = 0;
-    gltf.scene.position.y = 0;
-    gltf.scene.position.z = 0;
-
-    gltf.scene.rotation.y = -0.0;
-  gltf.scene.rotation.z = - 0.0;
-  gltf.scene.rotation.x = - 0.0;
-    app.scene.add(gltf1.scene);
-});
 
 
 loader.load(modelURL3, function(gltf) {
@@ -59,12 +43,6 @@ loader.load(modelURL3, function(gltf) {
   gltf.scene.rotation.x = - 0.0;
     app.scene.add(gltf3.scene);
 });
-function animate() {
-  requestAnimationFrame(animate);
-app.renderer.render(app.scene, app.camera);
-}
-animate();
-
 
 loader.load(modelURL4, function(gltf) {
     gltf4 = gltf;
@@ -174,6 +152,23 @@ window.addEventListener('wheel', (event) => {
   gltf8.scene.position.x += scrollY2 * brzina;
   gltf9.scene.position.x += scrollY2* brzina;
 });
+/*
+
+const stakloMaterial = app.material({
+  type: 'physical',
+  transmission: 1.0,
+  roughness: 0.0,
+  ior: 1.7,
+  thickness: 0.5,
+  color: 0xffffff, 
+});
+
+const okvirGeometry = app.geometry({ type: 'box', width: 0.3, height: 0.3, depth: 0.3 });
+const okvirMesh = app.mesh({ geometry: okvirGeometry, material: stakloMaterial });
+app.scene.add(okvirMesh);
+okvirMesh.position.set(0, 0, 0);
+*/
+
 //Rasvjeta
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(10, 10, 10);
@@ -181,6 +176,21 @@ app.scene.add(light);
 
 const ambientLight = new THREE.AmbientLight(0x404040); 
 app.scene.add(ambientLight);
+/*
+const height = innerHeight;
+const width = innerWidth;
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+camera.position.set(0, 0, 20);  
+camera.lookAt(okvirMesh.position);
+app.scene.add(camera);
+*/
+function animate() {
+  requestAnimationFrame(animate);
+app.renderer.render(app.scene, app.camera);
+}
+animate();
+
+
 
 const Register = () => {
   const [name, setName] = createSignal('');
