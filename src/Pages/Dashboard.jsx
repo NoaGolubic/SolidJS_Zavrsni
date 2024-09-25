@@ -2,50 +2,6 @@ import { createSignal } from "solid-js";
 import { useLocation, useNavigate } from "@solidjs/router";
 import supabase from '../Backend/supabase'; 
 import "../CSS/dashbaord.css";
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import threeasy from "threeasy";
-
-const app = new threeasy(THREE, { alpha: true });
-var loader = new GLTFLoader();
-let gltf1;
-let modelURL = "src\assets\dassault_rafale2\scene.gltf";
-
-loader.load(modelURL, function(gltf) {
-    gltf1 = gltf;
-    gltf.scene.scale.x = 1;
-    gltf.scene.scale.y = 1;
-    gltf.scene.scale.z = 1;
-
-    gltf.scene.position.x = 0;  
-    gltf.scene.position.y = 0;  
-    gltf.scene.position.z = 0;
-
-    gltf.scene.rotation.y =   0.0;
-    gltf.scene.rotation.z =   0.0;
-    gltf.scene.rotation.x =   0.0;
-    app.scene.add(gltf1.scene);
-});
-
-function kretanje(){
-    let brzina = 20;
-    gltf1.scene.position.x = brzina;
-}
-
-//Rasvjeta
-const light = new THREE.DirectionalLight(0xffffff, 1);
-light.position.set(10, 10, 10);
-app.scene.add(light);
-
-const ambientLight = new THREE.AmbientLight(0x404040); 
-app.scene.add(ambientLight);
-
-function animate() {
-  requestAnimationFrame(animate);
-app.renderer.render(app.scene, app.camera);
-}
-animate();
-
 const Homepage = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -81,6 +37,7 @@ const Homepage = () => {
                 <h1>Pocetna</h1>
                 <h3>Dobrodosli, {name}!</h3>
                 <button className="logout-button" onClick={logoutUser}>Odjavi se</button>
+                <button className="info-button"  onClick={() => navigate('/info')}>Informacije</button>
             </header>
             <div className="pozadina">
                 <h2>Forma za slikane avione</h2>

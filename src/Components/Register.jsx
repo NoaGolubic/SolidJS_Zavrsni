@@ -13,34 +13,25 @@ var loader = new GLTFLoader();
 
 let modelURL3 = "src/volume_cloud/scene.gltf";
 let modelURL4 = "src/volume_cloud/scene.gltf";
-let modelURL5 = "src/volume_cloud/scene.gltf";
-let modelURL6 = "src/volume_cloud/scene.gltf";
-let modelURL7 = "src/volume_cloud/scene.gltf";
-let modelURL8 = "src/volume_cloud/scene.gltf";
 let modelURL9 = "src/volume_cloud/scene.gltf";
-
 let gltf3;
 let gltf4;
-let gltf5;
-let gltf6;
-let gltf7;
-let gltf8;
 let gltf9;
 
 
 loader.load(modelURL3, function(gltf) {
     gltf3 = gltf;
     gltf.scene.scale.x = 0.004;
-    gltf.scene.scale.y = 0.002;
+    gltf.scene.scale.y = 0.004;
     gltf.scene.scale.z = 0.002;
 
-    gltf.scene.position.x = -3;  
-    gltf.scene.position.y = -1.4;  
+    gltf.scene.position.x = -1,6;  
+    gltf.scene.position.y = -1.3;  
     gltf.scene.position.z = 0.005;
 
-    gltf.scene.rotation.y = -0.0;
+    gltf.scene.rotation.y = 1;
   gltf.scene.rotation.z = - 0.0;
-  gltf.scene.rotation.x = - 0.0;
+  gltf.scene.rotation.x = -0.5;
     app.scene.add(gltf3.scene);
 });
 
@@ -50,8 +41,8 @@ loader.load(modelURL4, function(gltf) {
     gltf.scene.scale.y = 0.0044;
     gltf.scene.scale.z = 0.003;
 
-    gltf.scene.position.x = -1.4;  
-    gltf.scene.position.y = -1.3;  
+    gltf.scene.position.x = 0.8;  
+    gltf.scene.position.y = -1.4;  
     gltf.scene.position.z = 0.00005;
 
     gltf.scene.rotation.y = -0.0;
@@ -60,82 +51,20 @@ loader.load(modelURL4, function(gltf) {
     app.scene.add(gltf4.scene);
 });
 
-loader.load(modelURL5, function(gltf) {
-    gltf5 = gltf;
-    gltf.scene.scale.x = 0.0053;
-    gltf.scene.scale.y = 0.0032;
-    gltf.scene.scale.z = 0.0031;
 
-    gltf.scene.position.x = 1;  
-    gltf.scene.position.y = -2;  
-    gltf.scene.position.z = 0.005;
-
-    gltf.scene.rotation.y = -0.0;
-    gltf.scene.rotation.z = - 0.0;
-    gltf.scene.rotation.x = - 0.0;
-    app.scene.add(gltf5.scene);
-});
-
-loader.load(modelURL6, function(gltf) {
-    gltf6 = gltf;
-    gltf.scene.scale.x = 0.0072;
-    gltf.scene.scale.y = 0.0043;
-    gltf.scene.scale.z = 0.0031;
-
-    gltf.scene.position.x = 1.8;  
-    gltf.scene.position.y = -1.44;  
-    gltf.scene.position.z = 0.005;
-
-    gltf.scene.rotation.y = -0.0;
-    gltf.scene.rotation.z = - 0.0;
-    gltf.scene.rotation.x = - 0.0;
-    app.scene.add(gltf6.scene);
-});
-
-loader.load(modelURL7, function(gltf) {
-    gltf7 = gltf;
-    gltf.scene.scale.x = 0.0072;
-    gltf.scene.scale.y = 0.0042;
-    gltf.scene.scale.z = 0.0041;
-
-    gltf.scene.position.x = 3;  
-    gltf.scene.position.y = -1.2;  
-    gltf.scene.position.z = 0.005;
-
-    gltf.scene.rotation.y = -0.0;
-    gltf.scene.rotation.z = - 0.0;
-    gltf.scene.rotation.x = - 0.0;
-    app.scene.add(gltf7.scene);
-});
-
-loader.load(modelURL8, function(gltf) {
-  gltf8 = gltf;
-  gltf.scene.scale.x = 0.0072;
-  gltf.scene.scale.y = 0.0033;
-  gltf.scene.scale.z = 0.0031;
-
-  gltf.scene.position.x = -1.87;  
-  gltf.scene.position.y = -1.44;  
-  gltf.scene.position.z = 0.005;
-
-  gltf.scene.rotation.y = -0.0;
-  gltf.scene.rotation.z = - 0.0;
-  gltf.scene.rotation.x = - 0.0;
-  app.scene.add(gltf8.scene);
-});
 
 loader.load(modelURL9, function(gltf) {
   gltf9 = gltf;
-  gltf.scene.scale.x = 0.0072;
+  gltf.scene.scale.x = 0.0032;
   gltf.scene.scale.y = 0.0033;
   gltf.scene.scale.z = 0.0031;
 
-  gltf.scene.position.x = 2.4;  
-  gltf.scene.position.y = -1.64;  
+  gltf.scene.position.x = 1.9;  
+  gltf.scene.position.y = -0.8;  
   gltf.scene.position.z = 0.005;
 
-  gltf.scene.rotation.y = -0.077;
-  gltf.scene.rotation.z = - 0.41;
+  gltf.scene.rotation.y = -2;
+  gltf.scene.rotation.z = - 3.5;
   gltf.scene.rotation.x = - 0.49;
   app.scene.add(gltf9.scene);
 });
@@ -146,28 +75,8 @@ window.addEventListener('wheel', (event) => {
   const scrollY2 = event.deltaY * 0.0001;
   gltf3.scene.position.x += scrollY1 * brzina;
   gltf4.scene.position.x += scrollY2 * brzina;
-  gltf5.scene.position.x += scrollY1 * brzina;
-  gltf6.scene.position.x += scrollY2 * brzina;
-  gltf7.scene.position.x += scrollY1 * brzina;
-  gltf8.scene.position.x += scrollY2 * brzina;
   gltf9.scene.position.x += scrollY2* brzina;
 });
-/*
-
-const stakloMaterial = app.material({
-  type: 'physical',
-  transmission: 1.0,
-  roughness: 0.0,
-  ior: 1.7,
-  thickness: 0.5,
-  color: 0xffffff, 
-});
-
-const okvirGeometry = app.geometry({ type: 'box', width: 0.3, height: 0.3, depth: 0.3 });
-const okvirMesh = app.mesh({ geometry: okvirGeometry, material: stakloMaterial });
-app.scene.add(okvirMesh);
-okvirMesh.position.set(0, 0, 0);
-*/
 
 //Rasvjeta
 const light = new THREE.DirectionalLight(0xffffff, 1);
@@ -176,14 +85,7 @@ app.scene.add(light);
 
 const ambientLight = new THREE.AmbientLight(0x404040); 
 app.scene.add(ambientLight);
-/*
-const height = innerHeight;
-const width = innerWidth;
-const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-camera.position.set(0, 0, 20);  
-camera.lookAt(okvirMesh.position);
-app.scene.add(camera);
-*/
+
 function animate() {
   requestAnimationFrame(animate);
 app.renderer.render(app.scene, app.camera);
@@ -256,7 +158,7 @@ const Register = () => {
   }
 
   return (
-    <div class="container">
+    <div class="glass-container">
     <canvas id="three-canvas"></canvas>
     <div className="container-custom">
       <div className="card-custom">

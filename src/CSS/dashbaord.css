@@ -34,6 +34,21 @@ body {
     background-color: #e84118;
 }
 
+.info-button {
+    padding: 10px 20px;
+    background-color: #00ff1a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 18px;
+}
+
+.info-button:hover {
+    background-color: #00ffa6;
+}
+
 .pozadina {
     border-radius: 25px;
     width: 100%;
