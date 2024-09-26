@@ -2,13 +2,13 @@ import { createSignal } from "solid-js";
 import { useLocation, useNavigate } from "@solidjs/router";
 import supabase from '../Backend/supabase'; 
 import "../CSS/dashbaord.css";
+import Navbar from "../Components/Navbar";
 
 //let prebaceno = false;
 //let brojPrebacenih = 0;
 
 const Homepage = () => {
     const location = useLocation();
-    const navigate = useNavigate();
     const name = location.state?.name || "korisniku";
 
     const [showDetails, setShowDetails] = createSignal({}); // Drži stanje za prikaz detalja o avionima
@@ -18,15 +18,6 @@ const Homepage = () => {
             ...prev,
             [index]: !prev[index]
         }));
-    };
-
-    const logoutUser = async () => {
-        const { error } = await supabase.auth.signOut(); 
-        if (error) {
-            console.error('Greška pri odjavi:', error.message);
-        } else {
-            navigate("/login"); 
-        }
     };
 
     /*nakon sto se koordinate usporede (tocno), a svi okviri su popunjeni, podaci se izmjenjuju s lijeva na desno 
@@ -58,12 +49,7 @@ const Homepage = () => {
 
     return (
         <div>
-            <header className="dashboard-header">
-                <h1>Pocetna</h1>
-                <h3>Dobrodosli, {name}!</h3>
-                <button className="logout-button" onClick={logoutUser}>Odjavi se</button>
-                <button className="info-button"  onClick={() => navigate('/info')}>Informacije</button>
-            </header>
+            <Navbar name={name} />
             <div className="pozadina">
                 <h2>Forma za slikane avione</h2>
                 <div className="kartice">

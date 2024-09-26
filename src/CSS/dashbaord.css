@@ -4,36 +4,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.dashboard-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content:space-between;
-    align-items:center;
-    background-color: #0077cc;
-    color: white;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-.logout-button {
-    padding: 10px 20px;
-    background-color: #ff4757;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 18px;
-}
-
-.logout-button:hover {
-    background-color: #e84118;
-}
-
 .info-button {
     padding: 10px 20px;
     background-color: #00ff1a;

@@ -1,0 +1,81 @@
+.dashboard-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0077cc;
+    color: white;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Dodaj prostor između gumba i teksta */
+}
+
+.header-buttons h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.info-button, .logout-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.info-button {
+    background-color: #00ff1a;
+    color: white;
+}
+
+.info-button:hover {
+    background-color: #00ffa6;
+}
+
+.logout-button {
+    background-color: #ff4757;
+    color: white;
+}
+
+.logout-button:hover {
+    background-color: #e84118;
+}
+
+/* Prilagodba za manje ekrane */
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    .header-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .dashboard-header h1 {
+        margin-bottom: 10px;
+    }
+
+    .info-button, .logout-button {
+        width: 100%; /* Gumbi će zauzimati punu širinu na manjim ekranima */
+    }
+}
