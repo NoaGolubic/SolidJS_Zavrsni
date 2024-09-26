@@ -10,8 +10,8 @@ body {
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content:space-between;
+    align-items:center;
     background-color: #0077cc;
     color: white;
     padding: 20px;
@@ -120,6 +120,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    
 }
 
 .details-button:hover {
