@@ -35,7 +35,7 @@ const Login = () => {
   };
 
   return (
-    <div className="glass-container2">
+    <div className="glass-container4">
     <div className="prijava-container">      
     <form onSubmit={loginUser}>
       <h2>Prijava</h2>

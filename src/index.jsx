@@ -3,7 +3,6 @@ import { render } from 'solid-js/web';
 import { Router} from "@solidjs/router";
 import { SupabaseProvider } from 'solid-supabase';
 import supabase from './Backend/supabase';
-import './CSS/index.css';
 import App from './Pages/App';
 
 

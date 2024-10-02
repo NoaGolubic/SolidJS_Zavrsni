@@ -1,0 +1,68 @@
+html, body {
+    height: 100%; /* Osiguraj da telu bude 100% visine */
+    margin: 0; /* Ukloni podrazumevane margine */
+    display: flex; /* Koristi flexbox */
+    justify-content: center; /* Horizontalno centriranje */
+    align-items: center; /* Vertikalno centriranje */
+    font-family: Arial, sans-serif; /* Postavi moderni font */
+  }
+  
+  .App {
+    text-align: center; /* Centriraj tekst unutar aplikacije */
+  }
+  
+  h1 {
+    margin-bottom: 20px; /* Razmak ispod naslova */
+  }
+  
+  h2 {
+    margin: 20px 0; /* Razmak iznad i ispod podnaslova */
+  }
+  
+  .scene {
+    width: 150px; /* Smanjena širina scene */
+    height: 150px; /* Smanjena visina scene */
+    perspective: 600px; /* Perspektiva za 3D efekat */
+    margin: 20px auto; /* Automatska margina za centriranje */
+  }
+  
+  .cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d; /* Održavanje 3D efekta */
+    transition: transform 0.5s ease; /* Glatka tranzicija rotacije */
+  }
+  
+  .face {
+    position: absolute;
+    width: 150px; /* Smanjena širina strana kocke */
+    height: 150px; /* Smanjena visina strana kocke */
+    background: rgba(0, 123, 255, 0.8); /* Polupropusna plava boja */
+    border: 2px solid #fff; /* Bela granica oko svake strane */
+    display: flex; /* Flexbox za centriranje sadržaja */
+    justify-content: center; /* Horizontalno centriranje */
+    align-items: center; /* Vertikalno centriranje */
+    font-size: 20px; /* Veličina fonta */
+    color: white; /* Boja teksta */
+    font-weight: bold; /* Podebljan font */
+  }
+  
+  .front  { transform: translateZ(75px); } /* Pola visine za wsmanjenu kocku */
+  .back   { transform: rotateY(180deg) translateZ(75px); }
+  .left   { transform: rotateY(-90deg) translateZ(75px); }
+  .right  { transform: rotateY(90deg) translateZ(75px); }
+  .top    { transform: rotateX(90deg) translateZ(75px); }
+  .bottom { transform: rotateX(-90deg) translateZ(75px); }
+  
+  /* Stilovi za prikaz lokacije */
+  p {
+    font-size: 16px; /* Veličina fonta za paragraf */
+    margin: 5px 0; /* Razmak između paragrafa */
+  }
+  
+  /* Dodatni stilovi za razmak */
+  .cube {
+    margin-top: 50px; /* Razmak iznad kocke */
+  }
+  
