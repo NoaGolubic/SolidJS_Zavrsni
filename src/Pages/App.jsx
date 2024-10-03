@@ -4,6 +4,7 @@ import Dashboard from "./Dashboard";
 import Register from "../Components/Register";
 import info from "./info";
 
+
 function App() {
   return(
     <>

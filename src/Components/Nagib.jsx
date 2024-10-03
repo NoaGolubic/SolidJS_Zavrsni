@@ -17,14 +17,13 @@ function Nagib() {
       setBeta(event.beta);    
       setGamma(event.gamma);  
 
-      // Rotiraj kocku na osnovu orijentacije
+
       if (cubeRef) {
         cubeRef.style.transform = `rotateX(${beta()}deg) rotateY(${gamma()}deg) rotateZ(${alpha()}deg)`;
       }
     };
 
     window.addEventListener('deviceorientation', handleOrientation);
-    // Ukloni listener kada komponenta prestane da se koristi
     onCleanup(() => {
       window.removeEventListener('deviceorientation', handleOrientation);
     });

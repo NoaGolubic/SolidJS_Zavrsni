@@ -24,7 +24,7 @@
     height: 380px; 
     border-radius: 100%;
     position: relative;
-    margin-left:730px;
+    margin-left:0px;
     background: linear-gradient(135 deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
