@@ -22,4 +22,5 @@
   gap: 30px;
   justify-content: center;
   padding: 10px;
+  scroll-behavior: auto;
 }

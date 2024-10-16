@@ -3,7 +3,7 @@ import "../CSS/info.css";
 import Navbar from "../Components/Navbar";
 import { useNavigate } from "@solidjs/router";
 import supabase from '../Backend/supabase'; 
-import "../CSS/navbar.css";
+
 
 //info o API, posuđenim modelima i radu aplikacije (tekst)
 const info = () => {
