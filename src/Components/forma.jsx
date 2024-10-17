@@ -1,4 +1,4 @@
-import "../CSS/dashbaord.css";
+import "../CSS/forma.css";
 
 
 const forma = () => {
@@ -6,7 +6,7 @@ const forma = () => {
       <>
       <div class="glass-container2">
         <div className="pozadina">
-          <h1>Forma za slikane avione</h1>
+          <h1>Forma za prikaz informacija</h1>
         </div>
       </div>
       </>

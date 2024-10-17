@@ -1,0 +1,24 @@
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* Onemogućuje horizontalno skrolanje */
+    margin: 0;
+    padding: 0;
+}
+.flex-container {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+    justify-content: flex-start; 
+    align-items: center;
+    padding: 20px;
+    scroll-behavior: auto;
+    margin-top: 350px; 
+    width: 100%; /* Osigurajte da flex-container zauzima punu širinu */
+    box-sizing: border-box; /* Osigurajte da padding ne povećava širinu */
+}
+
+@media (max-width: 768px) {
+    .flex-container {
+        margin-top: 800px; 
+    }
+}

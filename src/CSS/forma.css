@@ -1,0 +1,49 @@
+.glass-container2 {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto; /* Centrirano i dodana margina između elemenata */
+  height: 300px;
+  max-width: 600px; /* Dodano ograničenje širine */
+  width: 100%; /* Prilagodba za manje ekrane */
+}
+
+.pozadina {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  border-radius: 10px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column; /* Promijenjeno da elementi budu jedan ispod drugog */
+  gap: 20px; /* Razmak između mape, nagiba i forme */
+  justify-content: center;
+  align-items: center; /* Centriranje elemenata */
+  padding: 20px;
+  scroll-behavior: auto;
+}
+.flex-container {
+  display: flex;
+  flex-direction: column; /* Prikaz elemenata u stupcu */
+  gap: 20px; /* Razmak između forme i mape */
+  justify-content: center;
+  align-items: center; /* Centriranje elemenata */
+  padding: 20px;
+  scroll-behavior: auto;
+}
+
+.glass-container2 {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px; /* Dodano razmak dolje ispod forme */
+  height: 300px;
+  max-width: 600px; /* Ograniči širinu forme */
+  width: 100%; /* Prilagodba za manje ekrane */
+}
+

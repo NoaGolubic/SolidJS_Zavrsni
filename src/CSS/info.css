@@ -48,7 +48,11 @@ body {
         gap: 10px;
     }
 
-    .glass-kartica1, .glass-kartica2 {
+    .glass-kartica1 {
+        max-width: 100%;
+        margin-top: 450px; 
+    }
+    .glass-kartica2 {
         max-width: 100%;
     }
 }
