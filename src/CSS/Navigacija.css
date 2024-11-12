@@ -93,3 +93,18 @@ p {
     border-top: 3px solid rgba(0, 0, 0, 0.01);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.38);
 }
+
+.Pokreni{
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    width:50%;
+    height:30px;
+    margin-top: 25px;
+}
+
+.Pokreni:hover {
+    background: linear-gradient(135deg, #5d81f5, #8e5bcd);
+}
