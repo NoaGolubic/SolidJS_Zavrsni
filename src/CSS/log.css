@@ -7,13 +7,13 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     padding: 10px; 
-    overflow: hidden; 
+    overflow: hidden;
+    background-color: #80d0ef !important; 
 }
 
 
@@ -52,8 +52,8 @@ body {
 
 .prijava-container input {
     width: 100%;
-    padding: 16px;
-    margin-bottom: 20px;
+    padding: 10px;
+    margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 10px;
     font-size: 16px;

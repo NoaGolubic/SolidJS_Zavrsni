@@ -5,22 +5,22 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    height: auto; /* Uklonjen height: 100vh */
-    overflow-y: auto; /* Omogućava skrolanje */
+    height: auto; 
+    overflow-y: auto; 
 }
 
 .navbar {
-    position: sticky; /* Navigacija ostaje na vrhu pri skrolanju */
+    position: sticky; 
     top: 0;
-    z-index: 100; /* Veći z-index kako bi navigacija ostala iznad ostalih elemenata */
+    z-index: 100; 
     width: 100%;
-    background-color: #fff; /* Pozadina da ne prekriva tekst ispod */
+    background-color: #fff; 
 }
 
 .kartica-wrap {
     display: flex;
-    flex-direction: column; /* Elementi se slažu jedan ispod drugog */
-    justify-content: flex-start; /* Omogućava normalno pozicioniranje elemenata */
+    flex-direction: column; 
+    justify-content: flex-start; 
     align-items: center;
     width: 100%;
     gap: 20px;
@@ -33,7 +33,7 @@ body {
     height: auto;
     background: linear-gradient(rgba(207, 227, 240, 0.7), rgba(249, 249, 246, 0.6));
     padding: 10px;
-    margin-top: 20px; /* Dodatni razmak ispod navigacije */
+    margin-top: 20px; 
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.38);
 }

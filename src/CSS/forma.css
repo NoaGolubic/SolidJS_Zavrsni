@@ -3,10 +3,10 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin: 20px auto; /* Centrirano i dodana margina između elemenata */
+  margin: 20px auto; 
   height: 300px;
-  max-width: 600px; /* Dodano ograničenje širine */
-  width: 100%; /* Prilagodba za manje ekrane */
+  max-width: 600px; 
+  width: 100%; 
 }
 
 .pozadina {
@@ -19,10 +19,10 @@
 
 .flex-container {
   display: flex;
-  flex-direction: column; /* Promijenjeno da elementi budu jedan ispod drugog */
-  gap: 20px; /* Razmak između mape, nagiba i forme */
+  flex-direction: column; 
+  gap: 20px; 
   justify-content: center;
-  align-items: center; /* Centriranje elemenata */
+  align-items: center; 
   padding: 20px;
   scroll-behavior: auto;
 }
@@ -41,9 +41,10 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin-bottom: 20px; /* Dodano razmak dolje ispod forme */
+  margin-top: 110%;
+  margin-bottom: 20px; 
   height: 300px;
-  max-width: 600px; /* Ograniči širinu forme */
-  width: 100%; /* Prilagodba za manje ekrane */
+  max-width: 600px; 
+  width: 100%; 
 }
 
