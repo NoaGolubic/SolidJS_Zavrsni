@@ -1,4 +1,3 @@
-/* Global Styles */
 html, body {
     height: 100%; 
     margin: 0; 
@@ -15,7 +14,6 @@ html, body {
     text-align: center;
 }
 
-/* App Styling */
 .App {
     text-align: center; 
     margin-top: 10px;
@@ -34,7 +32,7 @@ p {
     margin: 5px 0;
 }
 
-/* Cube Styles */
+
 .scene {
     width: 150px; 
     height: 150px; 
@@ -56,7 +54,7 @@ p {
     position: absolute;
     width: 150px; 
     height: 150px; 
-    background: rgba(0, 123, 255, 0.8); 
+    background: linear-gradient(135deg, #5d81f59d, #8e5bcdb3);
     border: 2px solid #fff; 
     display: flex; 
     justify-content: center;
@@ -73,7 +71,6 @@ p {
 .top    { transform: rotateX(90deg) translateZ(75px); }
 .bottom { transform: rotateX(-90deg) translateZ(75px); }
 
-/* Map and Glass Container Styles */
 .mapa {
     border-radius: 100%;
     position: absolute;
@@ -87,7 +84,7 @@ p {
     max-width: 380px;
     height: 380px; 
     border-radius: 100%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    background: linear-gradient(135deg, rgba(250, 188, 252, 0.445), rgba(229, 155, 252, 0.242));
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border-top: 3px solid rgba(0, 0, 0, 0.01);

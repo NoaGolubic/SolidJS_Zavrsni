@@ -27,9 +27,9 @@
 }
 
 .glass-container2 {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.493), rgba(255, 255, 255, 0.242));
+  background: linear-gradient(135deg, rgba(250, 188, 252, 0.445), rgba(229, 155, 252, 0.242));
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.38);
   padding: 20px;
   margin-top: 110%;
   margin-bottom: 20px; 
