@@ -16,15 +16,6 @@
   padding: 20px;
   scroll-behavior: auto;
 }
-.flex-container {
-  display: flex;
-  flex-direction: column; 
-  gap: 20px; 
-  justify-content: center;
-  align-items: center; 
-  padding: 20px;
-  scroll-behavior: auto;
-}
 
 .glass-container2 {
   background: linear-gradient(135deg, rgba(250, 188, 252, 0.445), rgba(229, 155, 252, 0.242));
@@ -38,4 +29,23 @@
   width: 100%; 
 }
 
-
+@media (max-width: 1200px){
+  .pozadina {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    border-radius: 10px;
+  }
+  .glass-container2 {
+    background: linear-gradient(135deg, rgba(250, 188, 252, 0.445), rgba(229, 155, 252, 0.242));
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.38);
+    padding: 20px;
+    margin-top: 5%; 
+    margin-bottom: 20px; 
+    height: 300px;
+    max-width: 600px; 
+    width: 100%; 
+  }
+}

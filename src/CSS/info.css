@@ -41,7 +41,7 @@ body {
     margin-top:100px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .kartica-wrap {
         width: 100%;
         padding: 10px;
@@ -49,10 +49,11 @@ body {
     }
 
     .glass-kartica1 {
-        max-width: 100%;
-        margin-top: 450px; 
+        max-width: 85%;
+        margin-top: 0%; 
     }
     .glass-kartica2 {
-        max-width: 100%;
+        max-width: 85%;
     }
+
 }
