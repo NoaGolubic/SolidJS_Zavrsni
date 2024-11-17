@@ -78,6 +78,20 @@ body {
     margin-right: 12px;
 }
 
+.glass-container {
+    min-width: 700px;
+    max-width: 750px;
+    height: 660px; 
+    position: relative;
+    background: linear-gradient(135 deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 20px;
+    border-top: 3px, solid rgbA(0, 0, 0, 0.01);
+    box-shadow: 0 8px 32px 0 rgbA(0, 0, 0, 0.38);
+    z-index: 2;
+}
+
 
 .register-btn {
     background: linear-gradient(135deg, #6e8efb, #a777e3);
@@ -115,33 +129,6 @@ body {
     text-decoration: underline;
 }
 
-
-@media (max-width: 768px) {
-    .card-custom {
-        padding: 40px;
-        max-width: 100%;
-        min-width: unset;
-    }
-
-    .form-title {
-        font-size: 24px;
-    }
-
-    .input-field {
-        padding: 14px;
-        font-size: 15px;
-    }
-
-    .register-btn {
-        padding: 12px;
-        font-size: 16px;
-    }
-
-    .checkbox-label {
-        font-size: 15px;
-    }
-}
-
 .link-button {
     background: none;
     color: #007bff;
@@ -157,16 +144,76 @@ body {
 }
 
 
-.glass-container {
-    min-width: 700px;
-    max-width: 750px;
-    height: 660px; 
-    position: relative;
-    background: linear-gradient(135 deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border-radius: 20px;
-    border-top: 3px, solid rgbA(0, 0, 0, 0.01);
-    box-shadow: 0 8px 32px 0 rgbA(0, 0, 0, 0.38);
-    z-index: 2;
+
+
+@media (max-width: 431px) {
+    body {
+        flex-direction: column;
+        width: 100vw;
+        padding: 5px;
+        overflow-x: hidden;  
+
+    .container-custom {
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card-custom {
+        width: 100%;
+        min-width: 280px;
+        padding: 10px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .glass-container {
+        width: 100%;
+        min-width: 300px;
+        width: 300px;
+        box-shadow: 0 4px 16px 0 rgbA(0, 0, 0, 0.38);
+        height: auto;
+        padding: 10px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .form-title {
+        font-size: 16px;
+        margin-bottom: 8px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .input-field {
+        font-size: 12px;
+        padding: 8px;
+        margin-bottom: 8px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-btn {
+        padding: 12px;
+        font-size: 14px;
+        width: 80%;
+        box-sizing: border-box;
+    }
+
+    .checkbox-label {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .link-options {
+        margin-top: 5px;
+        gap: 5px;
+    }
+
+    .link-button {
+        font-size: 12px;
+    }
+}
 }
