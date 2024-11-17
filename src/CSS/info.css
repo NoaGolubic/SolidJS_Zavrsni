@@ -41,7 +41,7 @@ body {
     margin-top:80%;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
     .kartica-wrap {
         width: 100%;
         padding: 10px;
@@ -49,11 +49,58 @@ body {
     }
 
     .glass-kartica1 {
-        max-width: 85%;
-        margin-top: 40%; 
+        max-width: 90%;
+        margin-top: 230%; 
     }
     .glass-kartica2 {
-        max-width: 85%;
+        max-width: 90%;
     }
 
+    .pmodeli{
+        padding:0px;
+        margin:5px;
+        margin-bottom: 10px;
+    }
+
+    .nas{
+        margin-bottom: 5%;
+        margin-top: 5%;
+    }
+
+}
+
+@media (min-width: 380px) and (max-width: 431px) {
+    .kartica-wrap {
+        width: 100%;
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .glass-kartica1 {
+        max-width: 95%;
+        margin-top: 1400px;
+        border-radius: 15px;
+        box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25);
+        padding: 15px;
+    }
+
+    .glass-kartica2 {
+        max-width: 95%;
+        border-radius: 15px;
+        box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25);
+        padding: 15px;
+    }
+
+    .pmodeli {
+        padding: 5px;
+        margin: 5px;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .nas {
+        margin-bottom: 10%;
+        margin-top: 10%;
+        font-size: 18px;
+    }
 }
