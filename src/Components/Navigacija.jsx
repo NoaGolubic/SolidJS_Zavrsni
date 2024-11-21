@@ -1,137 +1,118 @@
-// API pozicija aviona -> Z = (aplha) orijentiran prema sjeveru (offsetan za 50 stupnjeva/ x = beta orijentiran prema nebu)
-
-import { createSignal, onMount, onCleanup } from "solid-js";
+import { createSignal, createEffect, onMount, onCleanup } from "solid-js";
 import '../CSS/Navigacija.css';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-
 import axios from 'axios';
-let udaljenostLatE;
-let udaljenostLatW;
-let udaljenostLngN;
-let udaljenostLngS;
-let cubeRef;
-let mapContainer;
+
+
 const [latitude, setLatitude] = createSignal(null);
 const [longitude, setLongitude] = createSignal(null);
 const [alpha, setAlpha] = createSignal(0);
 const [beta, setBeta] = createSignal(0);
 const [gamma, setGamma] = createSignal(0);
 const [magHeading, setMagHeading] = createSignal(null);
+const [udaljenostLatE, setUdaljenostLatE] = createSignal(null);
+const [udaljenostLatW, setUdaljenostLatW] = createSignal(null);
+const [udaljenostLngN, setUdaljenostLngN] = createSignal(null);
+const [udaljenostLngS, setUdaljenostLngS] = createSignal(null);
 const [kutAvionaX, setKutAvionaX] = createSignal(0);
-const [kutAvion, setKutAvion] = createSignal(0);
+const [kutYAvion, setKutYAvion] = createSignal(0);
 const [UdaljenostZRC, setUdaljenostZRC] = createSignal(0);
 const [elevation, setElevation] = createSignal(0);
 const [avionLng, setAvionLng] = createSignal(0);
 const [avionLat, setAvionLat] = createSignal(0);
 const [visina, setVisina] = createSignal(0);
 
-function Orijentacija() {
+let cubeRef;
+let mapContainer;
 
-   //DOBIVANJE ELEVACIJE IZ API-A
-   function getElevation(lat, lng) {
-    const dataset = 'etopo1';
+
+function Navigacija() {
+//Stavljanje korisnika na mapu
+  function lokacijaKorisnik() {
+    return new Promise((resolve, reject) => {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            setLatitude(lat);
+            setLongitude(lng);
+            console.log("LATITUDA I LONGITUDA KORISNIK: ", latitude(), longitude());
+            resolve();
+          },
+          (error) => {
+            console.error("Error fetching geolocation:", error);
+            reject(error);
+          }
+        );
+      } else {
+        console.log("Geolocation is not supported");
+      }
+    });
+  }
+
+  //Orijentacija mobitela
+  const handleOrientation = (event) => {
+    setAlpha(event.alpha);
+    setBeta(event.beta);
+    setGamma(event.gamma);
+
+    if (cubeRef) {
+      cubeRef.style.transform = `rotateX(${beta()}deg) rotateY(${gamma()}deg) rotateZ(${alpha()}deg)`;
+    }
+  };
+
+  onMount(() => {
+    window.addEventListener("deviceorientation", handleOrientation);
+    return () => {
+      window.removeEventListener("deviceorientation", handleOrientation);
+    };
+  });
+
+//DEFINIRANJE ZRAČNOG PROSTORA U KOJEM SE TRAŽE AVIONI
+//jedan stupanj lat (geo širina) je 111.11km / 60  = 1.85183333333km  u minuti broj 9.72009720099 * 1.85... daje okrug od 36km
+// jedan stupanj lng (geo visine) PRIBLIŽNO je 111*cos(lat)
+  function prozor(lat, lng) {
+    setUdaljenostLatE(lat + 9.72009720099 / 60);
+    setUdaljenostLatW(lat - 9.72009720099 / 60);
+    setUdaljenostLngN(lng + 111 * Math.cos(lat * (Math.PI / 180)));
+    setUdaljenostLngS(lng - 111 * Math.cos(lat * (Math.PI / 180)));
+
+    console.log("Okvir gledanja", udaljenostLatE(), udaljenostLatW(), udaljenostLngN(), udaljenostLngS());
+  }
+
+  // Izračun kuta X između korisnika i aviona
+  function kutKor_AV(avionLat, avionLng, lat, lng) {
+    const kutY = Math.atan2(avionLat - lat, avionLng - lng) * (180 / Math.PI);
+    const kutAvionaX = (90 - kutY + 360) % 360;
+    setKutAvionaX(kutAvionaX);
+    return kutAvionaX;
+  }
+
+  // API elevacija
+  function getElevation(lat, lng) {
+    const dataset = "etopo1";
     const url = `https://api.opentopodata.org/v1/${dataset}?locations=${lat},${lng}`;
 
-    return axios.get(url)
-      .then(response => {
+    return axios
+      .get(url)
+      .then((response) => {
         if (response.data && response.data.results && response.data.results.length > 0) {
           const elevationVal = response.data.results[0].elevation;
           setElevation(elevationVal);
+          return elevationVal;
         } else {
           throw new Error("Could not find elevation data.");
         }
       })
-      .catch(error => {
-        console.error('Error fetching elevation data:', error);
+      .catch((error) => {
+        console.error("Error fetching elevation data:", error);
         setElevation(0);
       });
   }
-  onMount(() => {
 
-    //PRIKUPLJANJE PODATAKA O LOKACIJI KORISNIKA
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-        setLatitude(lat);
-        setLongitude(lng);
-
-        const map = L.map(mapContainer).setView([lat, lng], 13);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        L.marker([lat, lng]).addTo(map)
-          .bindPopup(`Trenutna lokacija: ${lat}, ${lng}`)
-          .openPopup();
-      }, (error) => {
-        console.error("Greška kod dobivanja geolokacije: ", error);
-      });
-    } else {
-      console.log("Geolokacija nije dostupna.");
-    }
-
-    //DOBIVANJE ORIJENTACIJE MOBITELA
-    const handleOrientation = (event) => {
-      setAlpha(event.alpha);
-      setBeta(event.beta);
-      setGamma(event.gamma);
-
-      if (cubeRef) {
-        cubeRef.style.transform = `rotateX(${beta()}deg) rotateY(${gamma()}deg) rotateZ(${alpha()}deg)`;
-      }
-    };
-
-    window.addEventListener('deviceorientation', handleOrientation);
-    onCleanup(() => {
-      window.removeEventListener('deviceorientation', handleOrientation);
-    });
-
-    //PRIKUPLJANJE PODATAKA O SMJERU GLEDANJA S OBZIROM NA MAGNETSKI SJEVER
-    const magnetometar = () => {
-      if ("Magnetometer" in window) {
-        const sensor = new Magnetometer();
-        sensor.start();
-
-
-        sensor.onreading = () => {
-          const smjer = izracunSmjer(sensor.x, sensor.y);
-          setMagHeading(smjer);
-        };
-
-        sensor.onerror = (event) => {
-          console.log("Došlo je do greške pri očitanju senzora magnetometra:", event.error);
-        };
-
-
-        onCleanup(() => {
-          sensor.stop();
-        });
-
-      } else {
-        console.log("Magnetometar nije podržan");
-      }
-      magnetometar();
-      getElevation(lat, lng);
-        prozor(lat, lng);  
-    };
-
-    //DEFINIRANJE ZRAČNOG PROSTORA U KOJEM SE TRAŽE AVIONI
-    //jedan stupanj lat (geo širina) je 111.11km / 60  = 1.85183333333km  u minuti broj 9.72009720099 * 1.85... daje okrug od 36km
-    // jedan stupanj lng (geo visine) PRIBLIŽNO je 111*cos(lat)
-
-    function prozor(lat, lng) {
-      udaljenostLatE = lat + (9.72009720099 / 60);
-      udaljenostLatW = lat - (9.72009720099 / 60);
-
-      udaljenostLngN = lng + 111 * Math.cos(lat * (Math.PI / 180));
-      udaljenostLngS = lng - 111 * Math.cos(lat * (Math.PI / 180));
-    }
-  }); //onMOUNT
-
-  //FUNKCIJA ZA USPOREĐIVANJE X I Y KUTA KORISNIKA I AVIONA
+  //Sveukupni izračun kuteva
   function skeniranje(lat, lng, avionLat, avionLng, visina, gamma) {
     const R = 6371000;
     const X1 = avionLat * (Math.PI / 180);
@@ -146,113 +127,89 @@ function Orijentacija() {
     const c = 2 * Math.asin(Math.sqrt(a));
     const UdaljenostZRCVal = R * c;
     setUdaljenostZRC(UdaljenostZRCVal);
-    let VisinaDelta = visina - elevation;
+    const VisinaDelta = visina - elevation();
 
-    const kutAvionValue = Math.atan(UdaljenostZRC / VisinaDelta) * (180 / Math.PI);
-    setKutAvion(kutAvionValue);
-    kutKor_AV(avionLat, avionLng, kut);
-
-    gornjaGranicaY = kutAvion + 5;
-    donjaGranicaY = kutAvion - 5;
-    gornjaGranicaX = kutAvionaX + 5;
-    donjaGranicaX = kutAvionaX - 5;
-
-    if (gamma >= donjaGranicaY && gamma <= gornjaGranicaY && smjer >= donjaGranicaX && smjer <= gornjaGranicaX) {
-      //dodati avion u bazu 
-    } else {
-      console.log("Avion se ne nalazi u traženom zračnom prostoru");
-    }
+    const kutAvionYValue = Math.atan(UdaljenostZRC() / VisinaDelta) * (180 / Math.PI);
+    setKutYAvion(kutAvionYValue);
+    kutKor_AV(avionLat(), avionLng(), latitude(), longitude());
   }
 
-  function pozivNaGumb() {
-
-    const lat = latitude();
-    const lng = longitude();
-    const gammaValue = gamma();
-    getElevation(lat, lng);
-    //DOHVAĆANJE INFORMACIJA O AVIONIMA U DEFINIRANOM ZRAČNOM PROSTORU
-    let config = {
-      method: 'get',
+  //FLIGHTRADAR24
+  function fetchFlightData() {
+    const config = {
+      method: "get",
       maxBodyLength: Infinity,
-      url: `https://fr24api.flightradar24.com/common/v1/search.json?bounds=${udaljenostLatE},${udaljenostLatW},${udaljenostLngN},${udaljenostLngS}`,
+      url: `https://fr24api.flightradar24.com/common/v1/search.json?bounds=${udaljenostLatE()},${udaljenostLatW()},${udaljenostLngN()},${udaljenostLngS()}`,
       headers: {
-        'Accept': 'application/json',
-        'Accept-Version': 'v1',
-        'Authorization': 'Bearer 9d52befb-6f75-4a23-87ce-17ff514e15c8|U7gGOhwvB5LxNzbD2Za8Pg2USZTwpoXymvYDg1kgdd483089'                            //zaljepit token 
-      }
+        Accept: "application/json",
+        "Accept-Version": "v1",
+      },
     };
 
-    axios.request(config)
+    return axios
+      .request(config)
       .then((response) => {
         if (response.data === null) {
-          console.log("Trenutačno nema zrakoplova u ovom području!");
+          console.log("Oko vas nema aviona!");
         } else {
-          response.data.data.forEach(flight => {
+          response.data.data.forEach((flight) => {
+            setAvionLat(flight.lat);
+            setAvionLng(flight.lon);
+            setVisina(flight.alt);
 
-            let avionLati = flight.lat;
-            setAvionLat(avionLati);
-            let avionLngi = flight.lon;
-            setAvionLng(avionLngi);
-            let visinaA = flight.alt;
-            setVisina(visinaA);
-
-            L.marker([avionLat, avionLng]).addTo(map)
-              .bindPopup(`Let BR.: ${flight.callsign},Zrakoplov: ${flight.aircraft}, Visina: ${flight.alt} ft`)
+            L.marker([avionLat(), avionLng()]).addTo(mapContainer)
+              .bindPopup(`Flight: ${flight.callsign}, Aircraft: ${flight.aircraft}, Altitude: ${flight.alt} ft`)
               .openPopup();
 
-            skeniranje(lat, lng, avionLat, avionLng, visina, gammaValue);
+            skeniranje(latitude(), longitude(), avionLat(), avionLng(), visina(), gamma());
           });
-          console.log(JSON.stringify(response.data)); //ispis svih informacija  o avionu koji leti u navedenom području
-
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
-
-    //KUT X S OBZIROM NA SJEVER (KORISNIK)
-    const izracunSmjer = (x, y) => {
-      let kut;
-      const smjer = Math.atan2(y, x) * (180 / Math.PI);
-      return kut = (smjer + 360) % 360;
-    };
-    //IZRAČUNAVANJE KUTA X IZMEĐU AVIONA I KORISNIKA
-    function kutKor_AV(avionLat, avionLng, lat, lng) {
-      const kutY = Math.atan2(avionLat - lat, avionLng - lng) * (180 / Math.PI);
-      const kutAvionaX = (90 - kutY + 360) % 360;
-      setKutAvionaX(kutAvionaX);
-      return kutAvionaX;
-    }
-    
-
   }
+
+  // Funkcija koja pokreće sve prema pravilnom redoslijedu
+  async function pokretac() {
+    try {
+      await lokacijaKorisnik();
+      if (latitude() !== null && longitude() !== null) {
+        const map = L.map(mapContainer).setView([latitude(), longitude()], 13);
+        prozor(latitude(), longitude());
+        await getElevation(latitude(), longitude());
+        fetchFlightData();
+      } else {
+        console.log("Pričekajte da se LAT i LNG učitaju");
+      }
+    } catch (error) {
+      console.error("Error during the process:", error);
+    }
+  }
+
   return (
     <div className="App">
-      {/* Prikaz lokacije */}
+    
       {latitude() && longitude() ? (
-        <>
-          {/* Element za prikaz mape */}
-          <div class="glass-container3">
-            <div className="mapa" ref={mapContainer} style={{ height: "340px", width: "340px" }}></div>
-          </div>
-        </>
-      ) : (
-        <p>Učitavanje lokacije...</p>
-      )}
+        <div className="glass-container3">
+          <div className="map" ref={(el) => (mapContainer = el)}></div>
+        </div>
+      ) : null}
+
+      <h2>Avion</h2>
+      <p>kut x između korisnika i aviona: {kutAvionaX()}</p>
+      <p>kut y do aviona: {kutYAvion()}</p>
+      <p>koordinate aviona: {avionLng()}, {avionLat()}</p>
+      <p>visina aviona: {visina()}</p>
+      <p>elevacija: {elevation()}</p>
+
 
       <h2>Nagib uređaja</h2>
       <p>Alpha (Z os): {alpha().toFixed(2)}</p>
       <p>Beta (X os): {beta().toFixed(2)}</p>
       <p>Gamma (Y os): {gamma().toFixed(2)}</p>
+      <p>Kut gledanja: {magHeading()}</p>
 
-      <h2>Avion</h2>
-      <p>kut x između korisnika i aviona: {kutAvionaX()}</p>
-      <p>kut y do aviona: {kutAvion()}</p>
-      <p>koordinate aviona: {avionLng()}, {avionLat()}</p>
-      <p>visina aviona: {visina()}</p>
-
-
-      {/* 3D kocka */}
       <div className="scene">
         <div className="cube" ref={el => cubeRef = el}>
           <div className="face front">Front</div>
@@ -263,11 +220,12 @@ function Orijentacija() {
           <div className="face bottom">Bottom</div>
         </div>
       </div>
-      <button className="Pokreni" onClick={pozivNaGumb}>Skeniraj</button>
+
+      <button className="Pokreni" onClick={pokretac}>Pokreni</button>
+      
+
     </div>
   );
 }
 
-
-
-export default Orijentacija;
+export default Navigacija;
