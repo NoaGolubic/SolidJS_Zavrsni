@@ -1,9 +1,10 @@
+//CorrectCh_New.mp3 by Gronkjaer -- https://freesound.org/s/654321/ -- License: Creative Commons 0
+
 import { createSignal, createEffect, onMount, onCleanup } from "solid-js";
 import '../CSS/Navigacija.css';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
-
 
 const [latitude, setLatitude] = createSignal(null);
 const [longitude, setLongitude] = createSignal(null);
@@ -132,6 +133,24 @@ function Navigacija() {
     const kutAvionYValue = Math.atan(UdaljenostZRC() / VisinaDelta) * (180 / Math.PI);
     setKutYAvion(kutAvionYValue);
     kutKor_AV(avionLat(), avionLng(), latitude(), longitude());
+    
+    gornjaGranicaY = kutYAvion + 5;
+    donjaGranicaY = kutYAvion - 5;
+    gornjaGranicaX = kutAvionaX + 5;
+    donjaGranicaX = kutAvionaX - 5;
+    console.log("Gornja i donja granica kuta x:",gornjaGranicaX, donjaGranicaX);
+    console.log("Gornja i donja granica kuta y:",gornjaGranicaY, donjaGranicaY);
+
+    if (gamma() >= donjaGranicaY && gamma() <= gornjaGranicaY && magHeading() >= donjaGranicaX && magHeading() <= gornjaGranicaX) {
+      //Dodati avion u bazu
+      var audio = document.getElementById("audiosuccess");
+      audio.play();
+    } else {
+      var audio = document.getElementById("audiofail");
+      audio.play();
+      console.log("Avion se ne nalazi u traženom zračnom prostoru");
+    }
+
   }
 
   //FLIGHTRADAR24
@@ -220,9 +239,11 @@ function Navigacija() {
           <div className="face bottom">Bottom</div>
         </div>
       </div>
+      
+      <audio autoplay id="audiosuccess" src="src\assets\bingo.mp3"></audio>
+      <audio autoplay id="audiofail" src="src\assets\fail.mp3"></audio>
 
       <button className="Pokreni" onClick={pokretac}>Pokreni</button>
-      
 
     </div>
   );
