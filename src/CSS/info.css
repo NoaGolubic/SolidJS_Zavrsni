@@ -5,22 +5,22 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    height: auto; /* Uklonjen height: 100vh */
-    overflow-y: auto; /* Omogućava skrolanje */
+    height: auto; 
+    overflow-y: auto; 
 }
 
 .navbar {
-    position: sticky; /* Navigacija ostaje na vrhu pri skrolanju */
+    position: sticky; 
     top: 0;
-    z-index: 100; /* Veći z-index kako bi navigacija ostala iznad ostalih elemenata */
+    z-index: 100; 
     width: 100%;
-    background-color: #fff; /* Pozadina da ne prekriva tekst ispod */
+    background-color: #fff; 
 }
 
 .kartica-wrap {
     display: flex;
-    flex-direction: column; /* Elementi se slažu jedan ispod drugog */
-    justify-content: flex-start; /* Omogućava normalno pozicioniranje elemenata */
+    flex-direction: column; 
+    justify-content: flex-start; 
     align-items: center;
     width: 100%;
     gap: 20px;
@@ -31,17 +31,17 @@ body {
     width: 100%;
     max-width: 600px;
     height: auto;
-    background: linear-gradient(rgba(207, 227, 240, 0.7), rgba(249, 249, 246, 0.6));
+    background: linear-gradient(135deg, rgba(250, 188, 252, 0.445), rgba(229, 155, 252, 0.242));
     padding: 10px;
-    margin-top: 20px; /* Dodatni razmak ispod navigacije */
+    margin-top: 30px; 
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.38);
 }
 .glass-kartica1{
-    margin-top:100px;
+    margin-top:80%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .kartica-wrap {
         width: 100%;
         padding: 10px;
@@ -49,10 +49,58 @@ body {
     }
 
     .glass-kartica1 {
-        max-width: 100%;
-        margin-top: 450px; 
+        max-width: 90%;
+        margin-top: 230%; 
     }
     .glass-kartica2 {
-        max-width: 100%;
+        max-width: 90%;
+    }
+
+    .pmodeli{
+        padding:0px;
+        margin:5px;
+        margin-bottom: 10px;
+    }
+
+    .nas{
+        margin-bottom: 5%;
+        margin-top: 5%;
+    }
+
+}
+
+@media (min-width: 380px) and (max-width: 431px) {
+    .kartica-wrap {
+        width: 100%;
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .glass-kartica1 {
+        max-width: 95%;
+        margin-top: 1400px;
+        border-radius: 15px;
+        box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25);
+        padding: 15px;
+    }
+
+    .glass-kartica2 {
+        max-width: 95%;
+        border-radius: 15px;
+        box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25);
+        padding: 15px;
+    }
+
+    .pmodeli {
+        padding: 5px;
+        margin: 5px;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .nas {
+        margin-bottom: 10%;
+        margin-top: 10%;
+        font-size: 18px;
     }
 }

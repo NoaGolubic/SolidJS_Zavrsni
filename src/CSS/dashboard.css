@@ -1,6 +1,6 @@
 html, body {
     width: 100%;
-    overflow-x: hidden; /* Onemogućuje horizontalno skrolanje */
+    overflow-x: hidden; 
     margin: 0;
     padding: 0;
 }
@@ -13,8 +13,8 @@ html, body {
     padding: 20px;
     scroll-behavior: auto;
     margin-top: 350px; 
-    width: 100%; /* Osigurajte da flex-container zauzima punu širinu */
-    box-sizing: border-box; /* Osigurajte da padding ne povećava širinu */
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 @media (max-width: 768px) {
