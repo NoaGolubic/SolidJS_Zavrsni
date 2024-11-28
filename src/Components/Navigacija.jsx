@@ -261,13 +261,12 @@ function Navigacija() {
         </div>
       </div>
 
-      <audio autoplay id="audiosuccess" src="src\assets\bingo.mp3"></audio>
-      <audio autoplay id="audiofail" src="src\assets\fail.mp3"></audio>
+      <audio  id="audiosuccess" src="src\assets\bingo.mp3"></audio>
+      <audio  id="audiofail" src="src\assets\fail.mp3"></audio>
 
       <button className="Pokreni" onClick={pokretac}>Pokreni</button>
 
     </div>
   );
 }
-
 export default Navigacija;

@@ -11,11 +11,13 @@
   "license": "MIT",
   "devDependencies": {
     "solid-devtools": "^0.29.2",
-    "vite": "^5.4.7",
+    "supabase": "^1.223.10",
+    "vite": "^5.4.11",
     "vite-plugin-solid": "^2.8.2"
   },
   "dependencies": {
     "@solidjs/router": "^0.14.5",
+    "@supabase/functions-js": "^2.4.3",
     "@supabase/supabase-js": "^2.45.4",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
     "axios": "^1.7.7",
