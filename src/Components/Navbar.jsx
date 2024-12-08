@@ -16,9 +16,9 @@ const Navbar = ({ name, showWelcome = true }) => {
 
     return (
         <header className="dashboard-header">
-            <h1 onClick={() => navigate('/home')}>Pocetna</h1>
+            <h1 onClick={() => navigate('/home')}>Početna</h1>
             <div className="header-buttons">
-                {showWelcome && <h3>Dobrodosli, {name}!</h3>} {/* Prikaz poruke dobrodošlice samo ako je showWelcome true */}
+                {showWelcome && <h3>Dobrodošli, {name}!</h3>} {/* Prikaz poruke dobrodošlice samo ako je showWelcome true */}
                 <button className="info-button" onClick={() => navigate('/info')}>Informacije</button>
                 <button className="logout-button" onClick={logoutUser}>Odjavi se</button>
             </div>
