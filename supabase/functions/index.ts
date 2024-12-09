@@ -26,7 +26,7 @@ console.log("Hello from Functions!")
  {
   method: "GET",
   headers:{
-    Authorization:`Bearer FLIGHTRADAR_KEY`,
+    Authorization:`Bearer ${process.env.FLIGHTRADAR_KEY}`,
     "Content-Type": "application/json",
   },
  });

@@ -203,20 +203,20 @@ async function fetchFlightData() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer VITE_SUPABASE_KEY`,
+          Authorization: `Bearer ${process.env.VITE_SUPABASE_KEY}`,
         },
         body: JSON.stringify(bounds),
       },
     );
     const data = await response.json();
     if (response.ok) {
-      flights.forEach((flight) => {
-        setAvionLat(lat);
-        setAvionLng(lon);
-        setVisina(alt);
+      data.forEach((flight) => {
+        setAvionLat(flight.lat);
+        setAvionLng(flight.lon);
+        setVisina(flight.alt);
         L.marker([avionLat(), avionLng()]).addTo(mapContainer)
           .bindPopup(
-            `Let: ${call}, Zrakoplov: ${aircraft}, Altituda: ${visina()} m`,
+            `Let: ${flight.callsign}, Zrakoplov: ${flight.aircraft}, Altituda: ${visina()} m`,
           )
           .openPopup();
         skeniranje(
@@ -244,7 +244,7 @@ async function pokretac() {
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
-        attribution: "© OpenStreetMap contributors",
+        //attribution: "© OpenStreetMap contributors",
       }).addTo(map);
 
       const userMarker = L.marker([latitude(), longitude()])
