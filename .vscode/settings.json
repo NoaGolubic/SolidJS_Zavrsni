@@ -1,6 +1,7 @@
 {
   "deno.enablePaths": [
-    "supabase/functions/index.ts"
+    "supabase/functions/index.ts",
+    "supabase/functions/APIpozivELEV/index.ts"
   ],
   "deno.lint": true,
   "deno.unstable": [

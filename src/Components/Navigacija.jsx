@@ -119,6 +119,24 @@ function Navigacija() {
   }
 
   // API elevacija
+
+  /*
+ try {
+    const dataset = "etopo1";
+    const lat = lat;
+    const lng = lng;
+    const response = await fetch(
+      "https://veclcridxyeqhbenssvk.supabase.co/functions/v1/APIpozivELEV",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.VITE_SUPABASE_KEY}`,
+        },
+        body: JSON.stringify(dataset, lat, lng),
+      },
+    );
+  */
   async function getElevation(lat, lng) {
     const dataset = "etopo1";
     const url =
